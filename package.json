@@ -1,0 +1,17 @@
+{
+  "name": "meta-swarm",
+  "version": "0.0.0",
+  "description": "A wrapper around multiple instances of `(secure-)webrtc-swarm`.",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "author": "https://github.com/orgs/peermusic/",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^2.2.0",
+    "events": "^1.1.0",
+    "inherits": "^2.0.1",
+    "signalhub": "^4.3.1"
+  }
+}
