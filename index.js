@@ -36,7 +36,10 @@ Meta.prototype._connect = function (url) {
   var self = this
 
   var hub = signalhub(self.namespace, [url])
-  var sw = self.swarm(hub, this.opts)
+  var sw
+
+  if (this.opts.keyPair) sw = self.swarm(hub, this.opts.keyPair, this.opts)
+  else sw = self.swarm(hub, this.opts)
 
   this.events.forEach(function (event) {
     sw.on(event, function () {
