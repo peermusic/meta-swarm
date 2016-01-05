@@ -14,7 +14,7 @@ function Meta (swarm, urls, opts) {
   this.events = opts.events || []
   this.urls = urls || []
   this.namespace = opts.namespace || 'meta-swarm'
-  this.opts = opts.opts || {}
+  this.opts = opts || {}
   this.swarm = swarm
 
   this.peers = {}
@@ -27,8 +27,9 @@ function Meta (swarm, urls, opts) {
 
 Meta.prototype._init = function () {
   var self = this
-  self.swarms = self.urls.map(function (url) {
-    return self._connect(url)
+  self.urls.forEach(function (url) {
+    debug('connecting to signalhub', url)
+    self._connect(url)
   })
 }
 
