@@ -52,6 +52,7 @@ Meta.prototype._connect = function (url) {
   })
 
   sw.on('connect', function (peer, id) {
+    self.emit('connect', peer, id)
     self.on('send', function (data) {
       peer.send(data)
     })
@@ -61,6 +62,7 @@ Meta.prototype._connect = function (url) {
     self.peers[id] = peer
   })
   sw.on('disconnect', function (peer, id) {
+    self.emit('disconnect', peer, id)
     delete self.peers[id]
   })
 
