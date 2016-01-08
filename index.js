@@ -51,6 +51,9 @@ Meta.prototype._connect = function (url) {
     })
   })
 
+  sw.on('accept', function (id, sharedSignPubKey) {
+    self.emit('accept', id, sharedSignPubKey)
+  })
   sw.on('connect', function (peer, id) {
     self.emit('connect', peer, id)
     self.on('send', function (data) {
