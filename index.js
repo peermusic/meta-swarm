@@ -73,6 +73,23 @@ Meta.prototype._connect = function (url) {
   return sw
 }
 
+Meta.prototype.addPeer = function (peerId) {
+  Object.keys(this.swarms).forEach((hubUrl) => {
+    var swarm = this.swarms[hubUrl]
+    if (swarm.whitelist.indexOf(peerId) !== -1) return
+    swarm.whitelist.push(peerId)
+  })
+}
+
+Meta.prototype.removePeer = function (peerId) {
+  Object.keys(this.swarms).forEach((hubUrl) => {
+    var swarm = this.swarms[hubUrl]
+    var index = swarm.whitelist.indexOf(peerId)
+    if (index === -1) return
+    swarm.whitelist.splice(index, 1)
+  })
+}
+
 Meta.prototype.addHub = function (url) {
   if (this.swarms[url]) return
   this._connect(url)
